@@ -31,4 +31,27 @@ class BlockMathJax extends Model {
 	protected $foreign_keys = [
 		'block_id' => ['block', 'block_id'],
 	];
+
+	protected $relationships = [
+		'__common_join__' => 'JOIN block USING (block_id) LEFT JOIN block_category_link USING (block_id) LEFT JOIN block_category USING (block_category_id)',
+		'block' => [
+			'where_fields'  => ['block_title', 'block_tag'],
+		],
+		'block_category' => [
+			'where_fields'  => ['block_category_id'],
+		],
+	];
+
+	public function getBlock() {
+		// object is not in the database
+		if (!$this->id) {
+			return NULL;
+		}
+
+		if (!isset($this->objects['block'])) {
+			$this->objects['block'] = $this->getModel('\\core\\classes\\models\\Block')->get(['id' => $this->id]);
+		}
+
+		return $this->objects['block'];
+	}
 }

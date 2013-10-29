@@ -60,4 +60,13 @@ class Hooks {
 			$block_compiled->insert();
 		}
 	}
+
+	public function block_render(Block $block) {
+		$model  = new Model($this->config, $this->database);
+		$content = $model->getModel('\modules\block_mathjax\classes\models\BlockMathJax')->get(['block_id' => $block->id]);
+		if ($content) {
+			return $content->content;
+		}
+		return NULL;
+	}
 }

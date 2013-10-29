@@ -7,6 +7,7 @@ use core\classes\Config;
 use core\classes\Database;
 use core\classes\Language;
 use core\classes\Model;
+use core\classes\Menu;
 
 class Installer {
 	protected $config;
@@ -51,10 +52,31 @@ class Installer {
 	}
 
 	public function enable() {
-		// Nothing needed here
+		$language = new Language($this->config);
+		$language->loadLanguageFile('administrator/block_mathjax.php', DS.'modules'.DS.'block_mathjax');
+
+		$main = [
+			'controller' => 'administrator/BlockMathJax',
+			'method' => 'index',
+		];
+		$main_menu = new Menu($this->config, $language);
+		$main_menu->loadMenu('menu_admin_main.php');
+		$main_menu->insert_menu(['content', 'content_blocks', 'content_blocks_list'], 'content_blocks_mathjax', $main);
+		$main_menu->update();
 	}
 
 	public function disable() {
-		// Nothing needed here
+		$language = new Language($this->config);
+		$language->loadLanguageFile('administrator/block_mathjax.php', DS.'modules'.DS.'block_mathjax');
+
+		// Remove some menu items to the admin menu
+		$main_menu = new Menu($this->config, $language);
+		$main_menu->loadMenu('menu_admin_main.php');
+		$menu = $main_menu->getMenuData();
+
+		unset($menu['content']['children']['content_blocks']['children']['content_blocks_mathjax']);
+
+		$main_menu->setMenuData($menu);
+		$main_menu->update();
 	}
 }

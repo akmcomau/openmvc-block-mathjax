@@ -9,8 +9,8 @@ $_URLS = [
 		'config' => [
 			'link_text' => ['en' => 'Block MathJax Config'],
 		],
-		'to_html' => [
-			'aliases' => ['en' => 'to-html'],
+		'compiled' => [
+			'link_text' => ['en' => 'View MathJax Blocks'],
 		],
 	],
 ];

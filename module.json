@@ -9,7 +9,8 @@
 	"hooks": {
 		"models": {
 			"block_insert": "classes\\Hooks",
-			"block_update": "classes\\Hooks"
+			"block_update": "classes\\Hooks",
+			"block_render": "classes\\Hooks"
 		}
 	},
 	"default_config": {
