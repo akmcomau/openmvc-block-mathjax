@@ -24,8 +24,8 @@ class Installer {
 		// create block_mathjax database table
 		$block_mathjax = $model->getModel('\\modules\\block_mathjax\\classes\\models\\BlockMathJax');
 		$block_mathjax->createTable();
-		$table->createIndexes();
-		$table->createForeignKeys();
+		$block_mathjax->createIndexes();
+		$block_mathjax->createForeignKeys();
 
 		// add the MathJax block_type
 		$block_type = $model->getModel('\\core\\classes\\models\\BlockType');
