@@ -43,13 +43,12 @@ class BlockMathJax extends Model {
 	];
 
 	public function getBlock() {
-		// object is not in the database
-		if (!$this->id) {
+		if (!$this->block_id) {
 			return NULL;
 		}
 
 		if (!isset($this->objects['block'])) {
-			$this->objects['block'] = $this->getModel('\\core\\classes\\models\\Block')->get(['id' => $this->id]);
+			$this->objects['block'] = $this->getModel('\\core\\classes\\models\\Block')->get(['id' => $this->block_id]);
 		}
 
 		return $this->objects['block'];

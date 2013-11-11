@@ -73,7 +73,7 @@
 							<div class="col-md-12">
 								<div class="widget">
 									<div class="widget-header">
-										<h3><a href="<?php echo $this->url->getURL('administrator/Blocks', 'edit', [$block->getBlock()->tag]); ?>" title="<?php echo $text_edit; ?>"><?php echo $block->getBlock()->title; ?></a></h3>
+										<h3><a href="<?php echo $this->url->getUrl('administrator/Blocks', 'edit', [$block->getBlock()->tag]); ?>" title="<?php echo $text_edit; ?>"><?php echo $block->getBlock()->title; ?></a></h3>
 									</div>
 									<div class="widget-content">
 										<?php echo $block->content; ?>
