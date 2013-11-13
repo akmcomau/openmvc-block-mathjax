@@ -37,13 +37,13 @@ class Hooks {
 		$phantomjs = $module_config->phantomjs;
 
 		$callback = function($matches) use ($phantomjs) {
-			$cmd = "$phantomjs ".__DIR__."/../templates/phantomjs/latex2svg.js --display \"".$matches[2].'"';
+			$cmd = "$phantomjs ".__DIR__."/../templates/phantomjs/latex2svg.js --display \"".$matches[1].'"';
 			exec($cmd, $output);
 			$svg = join("\n", $output);
-			return '<p '.$matches[1].'>'.$svg.'</p>';
+			return $svg;
 		};
 
-		$content = preg_replace_callback('/<p([^>]*)>\$(.*?)\$<\/p>/', $callback, $block->content);
+		$content = preg_replace_callback('/\$(.*?)\$/', $callback, $block->content);
 
 		$model = new Model($this->config, $this->database);
 		$block_compiled = $model->getModel('\\modules\\block_mathjax\\classes\\models\\BlockMathJax');

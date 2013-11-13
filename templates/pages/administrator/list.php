@@ -65,8 +65,10 @@
 					<h3><?php echo $text_search_results; ?></h3>
 				</div>
 				<div class="widget-content">
-					<div class="pagination">
-						<?php echo $pagination->getPageLinks(); ?>
+					<div class="row">
+						<div class="pagination">
+							<?php echo $pagination->getPageLinks(); ?>
+						</div>
 					</div>
 					<?php foreach ($blocks as $block) { ?>
 						<div class="row">
