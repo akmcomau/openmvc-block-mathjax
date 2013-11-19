@@ -58,6 +58,21 @@ class BlockMathJax extends Controller {
 		$this->response->setContent($template->render());
 	}
 
+	public function compile($tag) {
+		$model = new Model($this->config, $this->database);
+		$block = $model->getModel('\core\classes\models\Block')->get([
+			'tag' => $tag,
+		]);
+
+		$this->layout = NULL;
+		$data = [
+			'content' => $block->content,
+		];
+
+		$template = $this->getTemplate('pages/administrator/compile.php', $data, 'modules'.DS.'block_mathjax');
+		$this->response->setContent($template->render());
+	}
+
 	protected function getBlockSearchForm() {
 		$inputs = [
 			'search_title' => [

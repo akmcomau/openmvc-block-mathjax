@@ -2,6 +2,7 @@
 
 namespace modules\block_mathjax\classes;
 
+use DOMDocument;
 use core\classes\Request;
 use core\classes\Config;
 use core\classes\Logger;
@@ -36,14 +37,13 @@ class Hooks {
 		$module_config = $this->config->moduleConfig('Block MathJax');
 		$phantomjs = $module_config->phantomjs;
 
-		$callback = function($matches) use ($phantomjs) {
-			$cmd = "$phantomjs ".__DIR__."/../templates/phantomjs/latex2svg.js --display \"".$matches[1].'"';
-			exec($cmd, $output);
-			$svg = join("\n", $output);
-			return $svg;
-		};
+		$url = $this->config->getSiteURL().'/admin/block-mathjax/compile/'.$block->tag;
 
-		$content = preg_replace_callback('/\$(.*?)\$/', $callback, $block->content);
+		$cmd = "$phantomjs ".__DIR__."/../templates/phantomjs/latex2html.js --display $url";
+		exec($cmd, $output);
+		$content = join("\n", $output);
+
+		$content = preg_replace('/<script\s+type="math\/tex"[^>]+>.*?<\/script>/s', '', $content);
 
 		$model = new Model($this->config, $this->database);
 		$block_compiled = $model->getModel('\\modules\\block_mathjax\\classes\\models\\BlockMathJax');
