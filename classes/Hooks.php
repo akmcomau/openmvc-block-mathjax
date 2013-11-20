@@ -32,6 +32,7 @@ class Hooks extends Hook {
 		$content = join("\n", $output);
 
 		$content = preg_replace('/<script\s+type="math\/tex"[^>]+>.*?<\/script>/s', '', $content);
+		$content = preg_replace('/<div[^>]*id="MathJax_Message"[^>]*>.*?<\/div>/s', '', $content);
 
 		$model = new Model($this->config, $this->database);
 		$block_compiled = $model->getModel('\\modules\\block_mathjax\\classes\\models\\BlockMathJax');

@@ -4,6 +4,7 @@ namespace modules\block_mathjax\controllers\administrator;
 
 use core\classes\renderable\Controller;
 use core\classes\Model;
+use core\classes\Module;
 use core\classes\Pagination;
 use core\classes\FormValidator;
 
@@ -17,6 +18,10 @@ class BlockMathJax extends Controller {
 	];
 
 	public function index() {
+		if ((new Module($this->config))->isModuleEnabled('Block MathJax')) {
+			$this->config->updateSiteConfigParam('enable_latex', NULL);
+		}
+
 		$this->language->loadLanguageFile('administrator/block_mathjax.php', 'modules'.DS.'block_mathjax');
 		$form_search = $this->getBlockSearchForm();
 
