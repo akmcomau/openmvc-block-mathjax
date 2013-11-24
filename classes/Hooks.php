@@ -21,6 +21,14 @@ class Hooks extends Hook {
 		return $this->compile($block);
 	}
 
+	public function block_delete(Block $block) {
+		$mathjax = $block->getModel('\modules\block_mathjax\classes\models\BlockMathJax')->get([
+			'block_id' => $block->id
+		]);
+		$mathjax->delete();
+		return ;
+	}
+
 	protected function compile(Block $block) {
 		$module_config = $this->config->moduleConfig('Block MathJax');
 		$phantomjs = $module_config->phantomjs;

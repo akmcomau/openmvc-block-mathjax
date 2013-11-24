@@ -10,7 +10,8 @@
 		"models": {
 			"block_insert": "classes\\Hooks",
 			"block_update": "classes\\Hooks",
-			"block_render": "classes\\Hooks"
+			"block_render": "classes\\Hooks",
+			"block_delete": "classes\\Hooks"
 		}
 	},
 	"default_config": {
