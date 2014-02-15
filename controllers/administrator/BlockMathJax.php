@@ -18,7 +18,7 @@ class BlockMathJax extends Controller {
 	];
 
 	public function index() {
-		if ((new Module($this->config))->isModuleEnabled('Block MathJax')) {
+		if ((new Module($this->config))->isModuleEnabled('\modules\block_mathjax')) {
 			$this->config->updateSiteConfigParam('enable_latex', NULL);
 		}
 

@@ -30,7 +30,7 @@ class Hooks extends Hook {
 	}
 
 	protected function compile(Block $block) {
-		$module_config = $this->config->moduleConfig('Block MathJax');
+		$module_config = $this->config->moduleConfig('\modules\block_mathjax');
 		$phantomjs = $module_config->phantomjs;
 
 		$url = $this->config->getSiteURL().'/admin/block-mathjax/compile/'.$block->tag;
