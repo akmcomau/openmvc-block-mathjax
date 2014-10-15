@@ -33,7 +33,7 @@ class Hooks extends Hook {
 		$module_config = $this->config->moduleConfig('\modules\block_mathjax');
 		$phantomjs = $module_config->phantomjs;
 
-		$url = $this->config->getSiteURL().'/admin/block-mathjax/compile/'.$block->tag;
+		$url = $this->config->getSiteUrl().'/admin/block-mathjax/compile/'.$block->tag;
 
 		$cmd = "$phantomjs ".__DIR__."/../templates/phantomjs/latex2html.js --display $url";
 		exec($cmd, $output);
